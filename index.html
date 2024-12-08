@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DICOM Viewer UI</title>
+    <link
+      rel="stylesheet"
+      href="bootstrap-icons/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/viewer.css" />
+    <link rel="stylesheet" href="styles/toggle_switch.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Sidebar -->
+      <div class="viewer-sidebar">
+        <div class="d-flex justify-content-center">
+          <h2 class="viewer-title">Portable DICOM Viewer</h2>
+        </div>
+
+        <div class="d-flex flex-column model-result">
+          <h5 class="m-auto">Report</h5>
+          <hr class="m-0" />
+          <h6>Final prediction:</h6>
+          <p>Patient's name: XXXX XXXXXX</p>
+          <p>Exam Date: 12/8/2024</p>
+          <p>Breast Composition: Scattered fibroglandular densities</p>
+          <p>
+            Findings: Suspicious irregular mass in the upper outer quadrant of the left breast, with associated microcalcifications. 
+          </p>
+          <p>
+            Impression: BIRAD 5 Highly suggestive of malignancy. Appropriate action should be taken. 
+          </p>
+        </div>
+      </div>
+
+      <!-- Main Viewer -->
+      <div class="viewer">
+        <div class="toolbar">
+          <div class="d-flex w-100 justify-content-center">
+            <label class="d-flex align-items-center gap-1">
+              Adjust window
+              <label class="switch">
+                <input type="checkbox" id="mouse_checkbox" />
+                <span class="slider round"></span>
+              </label>
+              Move the image
+            </label>
+            <button class="tool" id="zoomIn">
+              <i class="bi bi-zoom-in"></i>
+            </button>
+            <button class="tool" id="zoomOut">
+              <i class="bi bi-zoom-out"></i>
+            </button>
+            <label class="d-flex align-items-center gap-1">
+              Heatmap
+              <label class="switch">
+                <input type="checkbox" id="heatmap_checkbox" checked />
+                <span class="slider round"></span>
+              </label>
+            </label>
+          </div>
+          <div class="mt-2 d-flex align-items-center gap-2 window_inputs_div">
+            <label>Window Width :</label>
+            <input id="ww" type="text" placeholder="e.g. 1000" value="256" />
+            <label>Window Center :</label>
+            <input id="wc" type="text" placeholder="e.g. 500" value="128" />
+            <button id="apply" class="btn btn-sm btn-outline-info">
+              Apply
+            </button>
+            <button id="invert" class="btn btn-sm btn-outline-info">
+              Invert
+            </button>
+            <button id="reset" class="btn btn-sm btn-outline-info">
+              Reset
+            </button>
+            <!-- Add more toolbar icons as needed -->
+          </div>
+        </div>
+        <div class="image-viewer">
+          <div class="image-container">
+            <div id="dicomImage1" class="image-panel"></div>
+            <div id="mapImage1" class="image-panel"></div>
+          </div>
+          <div class="image-container">
+            <div id="dicomImage2" class="image-panel"></div>
+            <div id="mapImage2" class="image-panel"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="jquery/dist/jquery.min.js"></script>
+    <script src="scripts/cornerstone.js"></script>
+    <script src="scripts/dicomParser.js"></script>
+    <script src="scripts/cornerstoneWADOImageLoader.min.js"></script>
+    <script src="scripts/cornerstoneWebImageLoader.min.js"></script>
+    <script src="scripts/load_viewer.js"></script>
+    <script src="scripts/adjust_window_center_width.js"></script>
+    <script src="scripts/zoom_in_out_mouse_events.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        loadAndEnableElements(
+          "http://127.0.0.1:54271/sample DICOM images/24055355_1e10aef17c9fe149_MG_L_CC_ANON.dcm",
+          "http://127.0.0.1:54271/sample DICOM images/24055274_1e10aef17c9fe149_MG_L_ML_ANON.dcm",
+          "http://127.0.0.1:54271/sample DICOM images/24055355_1e10aef17c9fe149_MG_L_CC_ANON_map.png",
+          "http://127.0.0.1:54271/sample DICOM images/24055274_1e10aef17c9fe149_MG_L_ML_ANON_map.png"
+        );
+      });
+    </script>
+  </body>
+</html>

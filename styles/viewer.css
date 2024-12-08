@@ -1,0 +1,227 @@
+﻿/* DICOM viewer styles */
+
+@font-face {
+  font-family: "iran-yekan-400";
+  src: url("/fonts/iran-yekan-400.woff") format("woff"),
+    url("/fonts/iran-yekan-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "iran-yekan-700";
+  src: url("/fonts/iran-yekan-700.woff") format("woff"),
+    url("/fonts/iran-yekan-700.woff2") format("woff2");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.viewer-title {
+  font-size: 20px;
+}
+
+.main-container {
+  background: linear-gradient(to right, #3a7fd5, #2664b1);
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+/* Sidebar */
+.viewer-sidebar {
+  width: 20%;
+  max-width: 300px;
+  min-width: 200px;
+  background-color: #1e2a38;
+  color: white;
+  padding: 10px 15px; /* Adjusted padding for better alignment */
+  overflow-y: auto;
+}
+
+.tab {
+  background: #2a3b4d;
+  padding: 8px 12px; /* Adjusted padding for consistent alignment */
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  flex: 1;
+  margin-right: 5px; /* Spacing between tabs */
+  border-radius: 3px;
+}
+
+.tab:last-child {
+  margin-right: 0; /* Remove margin on the last tab */
+}
+
+.tab.active {
+  background: #1e2a38;
+  font-weight: bold;
+}
+
+.model-result {
+  background: #2a3b4d;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px; /* Space between tabs and study list */
+  font-size: 14px;
+}
+
+.model-result > * {
+  margin-bottom: 0.5rem !important;
+}
+
+.study-list button {
+  background-color: transparent;
+  border: none;
+}
+
+.study-date,
+.study-type {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.study-thumbnails {
+  display: flex;
+  flex-direction: row;
+}
+
+.thumbnail {
+  display: flex;
+  align-items: center;
+}
+
+.thumbnail img {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+/* Main Viewer */
+.viewer {
+  flex: 1; /* Makes viewer take up the remaining space */
+  background-color: #0d1a27;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  overflow-y: auto; /* Allow vertical scrolling for larger images */
+}
+
+.window_inputs_div > button {
+  font-size: 12px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  background: #1e2a38;
+  border-bottom: 1px solid #2a3b4d;
+  width: 100%;
+}
+
+.toolbar label {
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.toolbar input,
+.toolbar btn {
+  font-size: 14px;
+}
+
+.tool {
+  background: none;
+  color: white;
+  border: none;
+  font-size: 18px;
+  margin-inline: 10px;
+  cursor: pointer;
+}
+
+.tool:hover {
+  color: #0dcaf0; /*Like btn-info*/
+}
+
+.tool.btn-list {
+  text-decoration: none;
+  /*position: relative;*/
+  /*right: 1.5rem;*/
+  /*font-size: 20px;*/
+  background: #1e2a38;
+  /*padding:5px;*/
+}
+
+.image-viewer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  flex-wrap: wrap; /* Allows images to wrap if the viewer area is narrow */
+  gap: 10px;
+  height: 100%;
+}
+
+.image-container {
+  flex: 1 1 45%; /* Makes each image container responsive */
+  max-width: 45%; /* Prevents containers from growing too large */
+  text-align: center;
+  border: 1px solid #2a3b4d;
+  border-radius: 5px;
+  background-color: #1e2a38; /* Background color to match viewer */
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.image-container div {
+  width: 100%;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+#mapImage1,
+#mapImage2 {
+  opacity: 0.2;
+}
+
+#dicomImage1,
+#dicomImage2 {
+  background-color: black;
+  background-image: url("../assets/infinit_loading.gif");
+  background-size: 25vw;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.loading {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  background-image: url("../assets/infinit_loading.gif");
+  background-size: 25vw;
+  background-repeat: no-repeat;
+  background-position: center;
+}
